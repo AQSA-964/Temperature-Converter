@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Temperature Converter</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #ffffff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				margin: 0;
+			}
+			.container {
+				background-color: #ffffff;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+				width: 300px;
+				text-align: center;
+			}
+			.container h1 {
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 20px;
+			}
+			.input-group {
+				margin-bottom: 20px;
+			}
+			.input-group label {
+				display: block;
+				font-size: 14px;
+				color: #888888;
+				margin-bottom: 5px;
+			}
+			.input-group input,
+			.input-group select {
+				width: 100%;
+				padding: 10px;
+				font-size: 16px;
+				border: 1px solid #dddddd;
+				border-radius: 5px;
+				box-sizing: border-box;
+			}
+			.input-group input:focus,
+			.input-group select:focus {
+				outline: none;
+				border-color: #007bff;
+			}
+			.result {
+				font-size: 24px;
+				margin-bottom: 20px;
+			}
+			.convert-button {
+				background-color: #007bff;
+				color: #ffffff;
+				padding: 10px;
+				font-size: 16px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				width: 100%;
+			}
+			.convert-button:hover {
+				background-color: #0056b3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Temperature converter</h1>
+			<div class="input-group">
+				<label for="degrees">Degrees</label>
+				<input type="text" id="degrees" value="72" />
+			</div>
+			<div class="input-group">
+				<label for="type">Type</label>
+				<select id="type">
+					<option>Fahrenheit</option>
+					<option>Celsius</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<label for="result">Result</label>
+				<div class="result" id="result">22.2222 °C</div>
+			</div>
+			<button class="convert-button" onclick="convertTemperature()">
+				Convert
+			</button>
+		</div>
+
+		<script>
+			function convertTemperature() {
+				const degrees = parseFloat(document.getElementById("degrees").value);
+				const type = document.getElementById("type").value;
+				let result;
+
+				if (isNaN(degrees)) {
+					alert("Please enter a valid number.");
+					return;
+				}
+
+				if (type === "Fahrenheit") {
+					// Convert Fahrenheit to Celsius
+					result = ((degrees - 32) * 5) / 9;
+					document.getElementById("result").innerText = `${result.toFixed(
+						4
+					)} °C`;
+				} else if (type === "Celsius") {
+					// Convert Celsius to Fahrenheit
+					result = (degrees * 9) / 5 + 32;
+					document.getElementById("result").innerText = `${result.toFixed(
+						4
+					)} °F`;
+				}
+			}
+		</script>
+	</body>
+</html>
